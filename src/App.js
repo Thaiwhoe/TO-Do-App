@@ -109,7 +109,7 @@ class App extends Component {
       console.log(editedItems)
       this.setState(
         {
-          items: editedItems.title,
+          items: editedItems,
           editItem: false,
           selectedItem: {},
           item: ''
@@ -142,7 +142,7 @@ class App extends Component {
           handleValidation={this.handleValidation}
           
            />
-           <TimePicker />
+           
           </div>
         </div>
       </div>
