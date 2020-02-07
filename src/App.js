@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import TodoInput from './components/TodoInput';
 import TodoList from './components/TodoList';
+import {TodoReminder} from "./components/TodoReminder";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import uuid from 'uuid';
 //import TodoReminder from './components/TodoReminder';
-import TimePicker from 'react-time-picker';
+//import { TimePicker } from 'react-time-picker';
+//import { DatePicker } from 'react-datepicker';
+//import { Form, Container, Row, Col } from 'react-bootstrap';
 
 
 class App extends Component {
@@ -19,12 +22,15 @@ class App extends Component {
     errors: true,
     itemError: '',
     showError: false,
-    selectedItem: {}
+    selectedItem: {},
+    showReminder: false,
+    checkBoxVal: false,
+    userData: '',
   }
   
   handleChange = (e)=>{
     this.setState({
-      item:e.target.value
+      item:e.target.value,
     })
     
   };
@@ -65,7 +71,6 @@ class App extends Component {
       editItem:false,
       showError: false
     })};
-
   };
 
   clearList = ()=>{
@@ -106,7 +111,6 @@ class App extends Component {
         }
         return item;
       });
-      console.log(editedItems)
       this.setState(
         {
           items: editedItems,
@@ -116,8 +120,20 @@ class App extends Component {
         }
       )
     }
+
+    componentWillUpdate(nextProps, nextState) {
+      localStorage.setItem('items', JSON.stringify(nextState.items));
+    }
+
+    componentWillMount() {
+      localStorage.getItem('items') && this.setState({
+        items: JSON.parse(localStorage.getItem('items')),
+      })
+    }
+    
+    
+  
   render() { 
-    const { item, showError, errors } = this.state
     return (
       <div className="container">
         <div className="row">
@@ -135,14 +151,15 @@ class App extends Component {
           showError={this.state.showError}
           handleEditSubmit= {this.handleEditSubmit}
           //validateTodo={this.validateTodo}
+
           />
+    
           <TodoList items={this.state.items} clearList={this.clearList} 
           handleDelete={this.handleDelete} 
           handleEdit={this.handleEdit} 
           handleValidation={this.handleValidation}
           
            />
-           
           </div>
         </div>
       </div>

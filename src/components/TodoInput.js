@@ -1,7 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import TodoReminder from './TodoReminder'
 
 export default class TodoInput extends Component {
-    render() {
+    state = {
+        clicked: false,
+    }
+
+    handleCheckBox = () => {
+        this.setState({
+            clicked: !this.state.clicked
+        })    
+    }
+
+    // showRemind=(e) => {
+    //    this.setState({
+    //        checked: true,
+    //    })
+    // }
+
+    // showRemindClose = (e) => {
+    //     this.setState({
+    //         checked: false,
+    //     })
+    // }
+    render() { 
         const { item,handleChange, handleSubmit,editItem,handleKeyPress,showError, handleEditSubmit } = this.props
         return (
             <div className="card card-body my-3">
@@ -12,7 +34,8 @@ export default class TodoInput extends Component {
                           <i className="fas fa-book"></i>
                       </div>
                     </div> 
-                    <input type="text" 
+                    <input type="text"
+                    name='inputed' 
                     className="form-control text-capitalize"  
                     placeholder="Add a todo item" 
                     value={item}
@@ -20,7 +43,18 @@ export default class TodoInput extends Component {
                 </div>
                 { showError &&
                     <span>Field cannot be empty</span>
-                    }   
+                }  
+                <br />
+                <div>
+                    <label>
+                        Remind me 
+                        <i class="fas fa-bell" onClick={ this.handleCheckBox }></i>
+                    </label>
+                    { this.state.clicked && 
+                    <TodoReminder 
+                        showRemindClose = {this.showRemindClose}
+                    /> }
+                </div>
                 <button 
                     type="submit"
                     onKeyPress={handleKeyPress} 
