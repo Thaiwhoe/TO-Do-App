@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoReminder from './TodoReminder'
 
+
 export default class TodoInput extends Component {
     state = {
         clicked: false,
@@ -26,7 +27,7 @@ export default class TodoInput extends Component {
     render() { 
         const { item,handleChange, handleSubmit,editItem,handleKeyPress,showError, handleEditSubmit } = this.props
         return (
-            <div className="card card-body my-3">
+            <div className="card card-body my-3 shadow p-3 mb-5 bg-white rounded">
             <form onSubmit={e => e.preventDefault()}>
                 <div className="input-group">
                   <div className="input-group-prepend">
@@ -48,7 +49,7 @@ export default class TodoInput extends Component {
                 <div>
                     <label>
                         Remind me 
-                        <i class="fas fa-bell" onClick={ this.handleCheckBox }></i>
+                        <i className="fas fa-bell" onClick={ this.handleCheckBox }></i>
                     </label>
                     { this.state.clicked && 
                     <TodoReminder 

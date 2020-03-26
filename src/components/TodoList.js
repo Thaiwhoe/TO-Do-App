@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 
 export default class TodoList extends Component {
     render() {
-        const { items, clearList, handleDelete, handleEdit} = this.props
+        const { items, clearList, handleDelete, handleEdit, handleChecked, handleCheckedDone } = this.props
 
         const itemList = items.map((item) => {
                      return(
@@ -12,6 +12,9 @@ export default class TodoList extends Component {
                         title={item.title} 
                         handleDelete={()=> handleDelete(item.id)}
                         handleEdit={()=> handleEdit(item.id)}
+                        handleChecked={() => handleChecked(item.id)}
+                        checked= {item.checked}
+                        // handleCheckedDone= {()=> handleCheckedDone(item.id)}
                         />
                      )
                  }) 

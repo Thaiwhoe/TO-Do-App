@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {Form}  from 'react-bootstrap';
+//import {Form}  from 'react-bootstrap';
 
 export class TodoReminder extends Component {
     render() {
-        const {showRemindClose} =this.props
+        //const {showRemindClose} =this.props
         return (
             <React.Fragment>
                 <form onSubmit={e=> e.preventDefault()}>
