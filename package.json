@@ -10,7 +10,7 @@
     "react-datepicker": "^2.10.1",
     "react-dom": "^16.10.2",
     "react-notifications-component": "^2.3.0",
-    "react-scripts": "^3.3.1",
+    "react-scripts": "^5.0.1",
     "react-time": "^4.3.0",
     "react-time-picker": "^3.9.0"
   },
